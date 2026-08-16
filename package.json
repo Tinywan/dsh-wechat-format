@@ -1,0 +1,42 @@
+{
+  "name": "dsh-wechat-format",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "DeepSeek Harness 插件：微信公众号 Markdown 排版工具（wechat_format），输出全内联样式 HTML",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "keywords": [
+    "deepseek-harness",
+    "dsh-plugin",
+    "wechat",
+    "markdown"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepublishOnly": "npm run build && npm test",
+    "test": "node test.mjs"
+  },
+  "dependencies": {
+    "highlight.js": "^11.11.1",
+    "jsdom": "^29.1.1",
+    "markdown-it": "^14.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1",
+    "@deepseek-ai/dsh-tools": "^0.0.1-rc.1"
+  }
+}

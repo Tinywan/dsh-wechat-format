@@ -1,0 +1,5 @@
+# bundle 补丁：安装本包后由 dsh 自动应用（package.json 的 dsh.bundle.patch 指向此文件）
+# name 使用包名裸标识符，loader 从 profile 的 node_modules 解析
+- insert:
+    - id: wechat-format
+      name: dsh-wechat-format

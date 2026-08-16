@@ -1,0 +1,5 @@
+# 本地加载 overlay：dsh --profile headless --patch ./cordis.yml "任务"
+# 顶层必须是 loader patch 条目数组
+- insert:
+    - id: wechat-format
+      name: file:///D:/AI/wechat/dsh-wechat-format/src/index.ts
