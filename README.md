@@ -18,21 +18,21 @@ DeepSeek Harness 插件：微信公众号 Markdown 排版工具。
 
 ## 安装（发布包）
 
-包内 `cordis.patch.yml` 已由 `package.json` 的 `dsh.bundle.patch` 声明，安装即自动注册工具：
+包内 `cordis.patch.yml` 已由 `package.json` 的 `dsh.bundle.patch` 声明，安装即自动注册工具。`--profile` 为必填项且要放在子命令之前：
 
 ```bash
+# 从 npm
+dsh plugin --profile web add dsh-wechat-format
 # 从 tarball（npm pack 产物）
-dsh plugin --profile headless add ./dsh-wechat-format-0.1.0.tgz
-# 从 npm（发布后）
-dsh plugin add dsh-wechat-format
-# 从 GitHub（发布后）
-dsh plugin add github:Tinywan/dsh-wechat-format
+dsh plugin --profile web add ./dsh-wechat-format-0.1.0.tgz
+# 从 GitHub
+dsh plugin --profile web add github:Tinywan/dsh-wechat-format
 ```
 
 安装后直接可用（dsh@0.1.0-rc.6 实测）：
 
 ```bash
-dsh --profile headless "用 wechat_format 渲染 …"
+dsh web   # web 界面中直接调用 wechat_format 工具
 ```
 
 > 注意：包内必须是编译后的 JS（`dist/`）。Node 的 type stripping 不支持 node_modules 里的 .ts，直接发布 TS 入口会报 `ERR_UNSUPPORTED_NODE_MODULES_TYPE_STRIPPING`。`npm publish` 的 `prepublishOnly` 会自动 build + test。
@@ -51,10 +51,10 @@ dsh --profile headless "用 wechat_format 渲染 …"
 以 patch 方式启动：
 
 ```bash
-# headless：一问一答
-dsh --profile headless --patch ./cordis.yml "用 wechat_format 渲染 …"
 # web 界面
 dsh web --patch ./cordis.yml
+# headless：一问一答
+dsh --profile headless --patch ./cordis.yml "用 wechat_format 渲染 …"
 ```
 
 注意事项（schema 编译器要求）：可选参数**省略** `required`（写 `required: false` 会报错）；object schema 必须显式声明 `additionalProperties`。
