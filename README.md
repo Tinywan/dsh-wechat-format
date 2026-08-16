@@ -4,6 +4,25 @@ DeepSeek Harness 插件：微信公众号 Markdown 排版工具。
 
 将 Markdown 转换为**微信公众号正文兼容的全内联样式 HTML**（无 class、无 `<style>`、图片 base64 内嵌），输出可直接粘贴进公众号编辑器。渲染核心来自 [md-wechat-formatter](https://github.com/Tinywan/tinywan-wechat-format)。
 
+## 快速安装
+
+```bash
+dsh plugin --profile web add dsh-wechat-format
+```
+
+安装后启动 `dsh web`，在对话中直接调用 `wechat_format` 工具即可（dsh@0.1.0-rc.6 实测）。
+
+`--profile` 为必填项且要放在子命令之前；包内 `cordis.patch.yml` 已由 `package.json` 的 `dsh.bundle.patch` 声明，安装即自动注册工具。其他安装来源：
+
+```bash
+# 从 tarball（npm pack 产物）
+dsh plugin --profile web add ./dsh-wechat-format-0.1.0.tgz
+# 从 GitHub
+dsh plugin --profile web add github:Tinywan/dsh-wechat-format
+```
+
+> 注意：包内必须是编译后的 JS（`dist/`）。Node 的 type stripping 不支持 node_modules 里的 .ts，直接发布 TS 入口会报 `ERR_UNSUPPORTED_NODE_MODULES_TYPE_STRIPPING`。`npm publish` 的 `prepublishOnly` 会自动 build + test。
+
 ## 提供的工具
 
 ### `wechat_format`
@@ -15,27 +34,6 @@ DeepSeek Harness 插件：微信公众号 Markdown 排版工具。
 | `imageFiles` | 否 | 文中图片对应的本地文件路径列表，按文件名匹配后以 base64 内嵌 |
 
 返回：`{ html, warnings, theme }`。`html` 即可直接粘贴的公众号正文 HTML；未匹配到的图片会进入 `warnings`。
-
-## 安装（发布包）
-
-包内 `cordis.patch.yml` 已由 `package.json` 的 `dsh.bundle.patch` 声明，安装即自动注册工具。`--profile` 为必填项且要放在子命令之前：
-
-```bash
-# 从 npm
-dsh plugin --profile web add dsh-wechat-format
-# 从 tarball（npm pack 产物）
-dsh plugin --profile web add ./dsh-wechat-format-0.1.0.tgz
-# 从 GitHub
-dsh plugin --profile web add github:Tinywan/dsh-wechat-format
-```
-
-安装后直接可用（dsh@0.1.0-rc.6 实测）：
-
-```bash
-dsh web   # web 界面中直接调用 wechat_format 工具
-```
-
-> 注意：包内必须是编译后的 JS（`dist/`）。Node 的 type stripping 不支持 node_modules 里的 .ts，直接发布 TS 入口会报 `ERR_UNSUPPORTED_NODE_MODULES_TYPE_STRIPPING`。`npm publish` 的 `prepublishOnly` 会自动 build + test。
 
 ## 本地开发（patch overlay）
 
