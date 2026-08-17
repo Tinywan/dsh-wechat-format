@@ -1,6 +1,6 @@
 {
   "name": "dsh-wechat-format",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "DeepSeek Harness 插件：微信公众号 Markdown 排版工具（wechat_format），输出全内联样式 HTML",
   "main": "dist/index.js",
