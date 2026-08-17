@@ -21,6 +21,14 @@
     "markdown"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tinywan/dsh-wechat-format.git"
+  },
+  "homepage": "https://github.com/Tinywan/dsh-wechat-format#readme",
+  "bugs": {
+    "url": "https://github.com/Tinywan/dsh-wechat-format/issues"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "prepublishOnly": "npm run build && npm test",
