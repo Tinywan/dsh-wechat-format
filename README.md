@@ -30,7 +30,7 @@ dsh plugin --profile web add github:Tinywan/dsh-wechat-format
 | 参数 | 必填 | 说明 |
 |---|---|---|
 | `markdown` | 是 | 文章完整 Markdown 文本 |
-| `theme` | 否 | 主题 id：`blue-tech`（默认）/ `orange-heart` / `violet` / `green` / `night` |
+| `theme` | 否 | 主题 id：`blue-tech`（默认）/ `orange-heart` / `violet` / `green` / `night` / `kami-paper` / `kimi-blue` |
 | `imageFiles` | 否 | 文中图片对应的本地文件路径列表，按文件名匹配后以 base64 内嵌 |
 
 返回：`{ html, warnings, theme }`。`html` 即可直接粘贴的公众号正文 HTML；未匹配到的图片会进入 `warnings`。
@@ -65,7 +65,7 @@ dsh --profile headless --patch ./cordis.yml "用 wechat_format 渲染 …"
 npm test
 ```
 
-冒烟测试覆盖：容器/色块/合规性、图片 base64 内嵌、图注编号、未匹配警告、五套主题渲染。
+冒烟测试覆盖：容器/色块/合规性、图片 base64 内嵌、图注编号、未匹配警告、七套主题渲染。
 
 ## 结构
 
@@ -73,8 +73,8 @@ npm test
 src/
   index.ts        插件入口：注册 wechat_format 工具（Node 环境 DOMParser shim）
   core/           渲染核心快照（与 md-wechat-formatter 的 src/core 同步）
-    themes.js     调色板 → 全量输出 token 工厂，5 套主题
-    render.js     markdown-it 规则（色块序号/引用卡片/列表/代码窗口/表格/图注）
+    themes.js     调色板 → 全量输出 token 工厂，7 套主题
+    render.js     markdown-it 规则（h1 描边序号/引用卡片/列表/代码块/斑马纹表格/图注/文末居中）
     highlight.js  hljs → 内联样式逐行转换
 ```
 

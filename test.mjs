@@ -42,9 +42,9 @@ const check = (name, ok) => results.push([name, ok])
 const env = { warnings: [], theme: getTheme(DEFAULT_THEME_ID), resolveImage: makeResolver([tmpImg]) }
 const html = render(md, env)
 check('默认主题容器 677px', html.includes('max-width:677px'))
-check('h2 渐变色块', html.includes('background:linear-gradient(135deg,#2273b8,#3a8ee6)'))
+check('h1 描边数字色块', html.includes('width:26px;height:26px') && html.includes('border:1px solid #2273b8'))
 check('无 class/style 块/ul', !/class=/.test(html) && !/<style/.test(html) && !/<\/?(ul|ol)[\s>]/.test(html))
-check('字体栈完整', html.includes("'HarmonyOS Sans','PingFang SC','MiSans','Source Han Sans SC','Microsoft YaHei',-apple-system,sans-serif"))
+check('字体栈完整', html.includes('font-family:Optima,PingFangSC-regular,serif'))
 
 // 2) 图片文件名匹配 → base64 内嵌
 const envImg = { warnings: [], theme: getTheme(DEFAULT_THEME_ID), resolveImage: makeResolver([tmpImg]) }
@@ -58,7 +58,7 @@ const envMiss = { warnings: [], theme: getTheme(DEFAULT_THEME_ID), resolveImage:
 render('![missing](no-such.png)', envMiss)
 check('未匹配图片产生警告', envMiss.warnings.length === 1)
 
-// 4) 五套主题均可渲染且合规
+// 4) 七套主题均可渲染且合规
 for (const t of themes) {
   const e = { warnings: [], theme: t.theme }
   const out = render(md, e)

@@ -61,10 +61,10 @@ export function apply(ctx: Context) {
     defineTool({
       name: 'wechat_format',
       description:
-        '将 Markdown 转换为微信公众号正文兼容的全内联样式 HTML（无 class、无 style 块，图片 base64 内嵌），可直接粘贴进公众号编辑器。可选主题：blue-tech 蓝色科技 / orange-heart 橙心 / violet 姹紫 / green 绿意 / night 凝夜。',
+        '将 Markdown 转换为微信公众号正文兼容的全内联样式 HTML（无 class、无 style 块，图片 base64 内嵌），可直接粘贴进公众号编辑器。可选主题：blue-tech 蓝色科技 / orange-heart 橙心 / violet 姹紫 / green 绿意 / night 凝夜 / kami-paper 暖纸 / kimi-blue Kimi 蓝。',
       parameters: {
         markdown: { type: 'string', required: true, description: '文章完整 Markdown 文本' },
-        theme: { type: 'string', description: '主题 id，可选 blue-tech / orange-heart / violet / green / night，默认 blue-tech' },
+        theme: { type: 'string', description: '主题 id，可选 blue-tech / orange-heart / violet / green / night / kami-paper / kimi-blue，默认 blue-tech' },
         imageFiles: { type: 'array', items: { type: 'string' }, description: '文中图片对应的本地文件路径列表，按文件名匹配后以 base64 内嵌' },
       },
       output: {
