@@ -33,7 +33,7 @@ function makeResolver(imageFiles) {
 const tmpImg = path.resolve('test-tmp.png')
 fs.writeFileSync(tmpImg, Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==', 'base64'))
 
-const md = fs.readFileSync(path.resolve('../md-wechat-formatter/src/assets/sample.md'), 'utf-8')
+const md = fs.readFileSync(path.resolve('assets/sample.md'), 'utf-8')
 
 const results = []
 const check = (name, ok) => results.push([name, ok])
